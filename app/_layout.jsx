@@ -9,6 +9,13 @@ export default function HomeLayout() {
             headerShown: false,
         }
         }
-    />
+    >
+      <Stack.Screen name='(tabs)'
+        options={{
+          headerShown:false
+        }}
+      />
+      
+      </Stack>
   )
 }
