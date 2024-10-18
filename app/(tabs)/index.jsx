@@ -4,6 +4,8 @@ import { Link, useRouter } from 'expo-router'
 import services from '../../utils/services'
 import { client } from '../../utils/KindeConfig';
 import { supabase } from '../../utils/SupabaseConfig';
+import Header from '../../components/Header';
+import colors from '../../utils/colors'
 
 export default function Home() {
   const router = useRouter();
@@ -42,10 +44,8 @@ export default function Home() {
     };
 
   return (
-    <View style={{ marginTop: 20 }}>
-      <Text style={styles.text}>Home</Text>
-      <Button title='Log Out'
-        onPress={handleLogout} />
+    <View style={{ marginTop: 20, padding:20, backgroundColor:colors.PRIMARY, height:150 }}>
+     <Header />
     </View>
   )
 }
