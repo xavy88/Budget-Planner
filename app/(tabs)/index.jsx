@@ -6,6 +6,7 @@ import { client } from '../../utils/KindeConfig';
 import { supabase } from '../../utils/SupabaseConfig';
 import Header from '../../components/Header';
 import colors from '../../utils/colors'
+import CircularChart from '../../components/CircularChart';
 
 export default function Home() {
   const router = useRouter();
@@ -46,6 +47,7 @@ export default function Home() {
   return (
     <View style={{ marginTop: 20, padding:20, backgroundColor:colors.PRIMARY, height:150 }}>
      <Header />
+     <CircularChart />
     </View>
   )
 }
