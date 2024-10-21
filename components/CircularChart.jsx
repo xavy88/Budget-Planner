@@ -12,7 +12,7 @@ export default function CircularChart() {
 
   return (
     <View style={styles.container}>
-      <Text style={{fontSize:20}}>Total Estimate:<Text style={{fontWeight:'bold'}}>$0.00</Text></Text>
+      <Text style={{fontSize:20,fontFamily:'Outfit',}}>Total Estimate:<Text style={{fontWeight:'bold'}}>$0.00</Text></Text>
       <View style={styles.subContainer}>
       <PieChart
             widthAndHeight={widthAndHeight}

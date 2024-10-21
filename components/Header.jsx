@@ -40,11 +40,13 @@ const styles = StyleSheet.create({
     textWel:{
         color:colors.WHITE,
         fontSize:18,
+        fontFamily:'Outfit',
     },
     textName:{
         color:colors.WHITE,
         fontSize:22,
         fontWeight:'bold',
+        fontFamily:'Outfit',
     },
     container:{
         display:'flex',
