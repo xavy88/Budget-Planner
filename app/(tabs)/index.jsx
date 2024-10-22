@@ -7,6 +7,7 @@ import { supabase } from '../../utils/SupabaseConfig';
 import Header from '../../components/Header';
 import colors from '../../utils/colors'
 import CircularChart from '../../components/CircularChart';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function Home() {
   const router = useRouter();
@@ -45,9 +46,14 @@ export default function Home() {
     };
 
   return (
-    <View style={{ marginTop: 20, padding:20, backgroundColor:colors.PRIMARY, height:150 }}>
+    <View style={{ marginTop: 20,flex:1}}>
+    <View style={{ padding:20, backgroundColor:colors.PRIMARY, height:150 }}>
      <Header />
      <CircularChart />
+    </View>
+    <Link href={'/add-new-category'} style={styles.addBtnContainer}>
+    <Ionicons name="add-circle" size={64} color={colors.PRIMARY} />
+    </Link>
     </View>
   )
 }
@@ -56,4 +62,9 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
   },
+  addBtnContainer:{
+    position:'absolute',
+    bottom:16,
+    right:16,
+  }
 })
