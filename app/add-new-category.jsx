@@ -6,6 +6,7 @@ import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import { supabase } from './../utils/SupabaseConfig'
 import { client } from './../utils/KindeConfig'
+import { useRouter } from 'expo-router';
 
 export default function AddNewCategory() {
 
@@ -14,7 +15,7 @@ export default function AddNewCategory() {
   const [categoryName, setCategoryName] = useState();
   const [totalBudget, setTotalBudget] = useState();
 
-
+  const router = useRouter();
   const onCreateCategory = async () => {
     const user = await client.getUserDetails();
     const { data, error } = await supabase
@@ -32,6 +33,12 @@ export default function AddNewCategory() {
 
       console.log(data);
       if (data) {
+        router.replace({
+          pathname:'/category-detail',
+          params:{
+            categoryId:data[0].id
+          }
+        })
         ToastAndroid.show("Category Created Successfully", ToastAndroid.SHORT);
       }
 
