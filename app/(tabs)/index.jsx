@@ -32,16 +32,19 @@ export default function Home() {
     }
   }
 
-  const getCategoryList = async()=>{
-    setLoading(true);
-    const user = await client.getUserDetails();
-    const {data, error} = await supabase.from('Category')
-    .select('*,CategoryItems(*)')
-    .eq('created_by', user.email)
+// This function will get the list of categories
+const getCategoryList = async () => {
+  setLoading(true);
+  const user = await client.getUserDetails();
 
-    setCategoryList(data);
-    data&&setLoading(false);
-  }
+  const { data, error } = await supabase
+    .from("Category")
+    .select("*,CategoryItems(*)")
+    .eq("created_by", user.email);
+
+  setCategoryList(data);
+  data && setLoading(false);
+};
 
 
   const handleLogout = async () => {

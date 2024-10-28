@@ -32,7 +32,7 @@ export default function CategoryList({ categoryList }) {
                  <View style={styles.subContainer}>
                  <View>
                   <Text style={styles.categoryText}>{category.name}</Text>
-                  <Text style={styles.itemCount}>{category?.CategoryItems.length} Items</Text>
+                  <Text style={styles.itemCount}>{category?.CategoryItems?.length} items</Text>
                  </View>
                  <Text style={styles.totalAmountText} >$5000</Text>
                  </View>
