@@ -1,10 +1,12 @@
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { useLocalSearchParams, useRouter } from 'expo-router'
+import { Link, useLocalSearchParams, useRouter } from 'expo-router'
 import { supabase } from '../utils/SupabaseConfig';
 import Feather from '@expo/vector-icons/Feather';
-import CourseInfo from '../components/CourseDetail/CourseInfo';
-import CourseItemList from '../components/CourseDetail/CourseItemList';
+import CategoryInfo from '../components/CategoryDetail/CategoryInfo';
+import CategoryItemList from '../components/CategoryDetail/CategoryItemList';
+import Entypo from '@expo/vector-icons/Entypo';
+import colors from '../utils/colors';
 
 
 export default function CategoryDetails() {
@@ -25,13 +27,31 @@ export default function CategoryDetails() {
   }
 
   return (
-    <View style={{ padding: 20, marginTop: 20 }}>
+    <View style={{ padding: 20, marginTop: 20, flex:1, backgroundColor: colors.WHITE}}>
       <TouchableOpacity onPress={() =>router.back()}>
       <Feather name="arrow-left-circle" size={44} color="black" />
       </TouchableOpacity>
-     <CourseInfo categoryData={categoryData} />
-     <CourseItemList  categoryData={categoryData} />
+     <CategoryInfo categoryData={categoryData} />
+     <CategoryItemList  categoryData={categoryData} />
+
+     <Link 
+     href={{
+      pathname:'/add-new-category-item',
+      params:{
+        categoryId:categoryData.id
+      }
+     }}
+     style={styles.floatingBtn}>
+     <Entypo name="add-to-list" size={34} color={colors.PRIMARY} />
+     </Link>
     </View>
   )
 }
 
+const styles = StyleSheet.create({
+  floatingBtn:{
+    position:'absolute',
+    bottom:16,
+    right:16,
+  },
+})

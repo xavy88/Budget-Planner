@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Fontisto from '@expo/vector-icons/Fontisto';
 import colors from '../../utils/colors'
 
-export default function CourseInfo({ categoryData }) {
+export default function CategoryInfo({ categoryData }) {
 
     const [totalCost, setTotalCost] = useState();
     const [percentTotal, setPercentTotal] = useState(0);

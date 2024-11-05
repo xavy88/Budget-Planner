@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
 import colors from '../../utils/colors'
 
-export default function CourseItemList({categoryData}) {
+export default function CategoryItemList({categoryData}) {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Item List</Text>
