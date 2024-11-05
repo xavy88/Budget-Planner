@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, ToastAndroid } from 'react-native'
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, ToastAndroid, ActivityIndicator } from 'react-native'
 import React, { useState } from 'react'
 import colors from '../utils/colors';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
@@ -20,6 +20,7 @@ export default function AddNewCategoryItem() {
   const [url, setUrl] = useState();
   const [cost, setCost] = useState();
   const [note, setNote] = useState();
+  const [loading, setLoading] = useState(false);
 
   const onImagePick = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -39,6 +40,7 @@ export default function AddNewCategoryItem() {
   }
 
   const onClickAdd = async () => {
+    setLoading (true);
     const fileName = Date.now() + ".png";
     const { data, error } = await supabase.storage
       .from("Images")
@@ -70,7 +72,7 @@ export default function AddNewCategoryItem() {
       console.log('data', data, 'error', error);
       ToastAndroid.show("Item Added Successfully", ToastAndroid.SHORT);
       //console.log('File Upload', data, error);
-
+        setLoading(false);
       //navigate to category details screen
       router.replace({
         pathname: "/category-detail",
@@ -124,10 +126,14 @@ export default function AddNewCategoryItem() {
         </View>
 
         <TouchableOpacity style={styles.button}
-          disabled={!name || !cost}
+          disabled={!name || !cost || loading}
           onPress={() => onClickAdd()}
         >
+          {loading?
+          <ActivityIndicator /> : 
           <Text style={styles.textButton}>Add</Text>
+        }
+         
         </TouchableOpacity>
       </ScrollView>
     </KeyboardAvoidingView>
