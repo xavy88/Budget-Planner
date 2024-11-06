@@ -1,12 +1,16 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Alert, ToastAndroid } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Fontisto from '@expo/vector-icons/Fontisto';
 import colors from '../../utils/colors'
+import { supabase } from './../../utils/SupabaseConfig'
+import { useRouter } from 'expo-router';
 
 export default function CategoryInfo({ categoryData }) {
 
     const [totalCost, setTotalCost] = useState();
     const [percentTotal, setPercentTotal] = useState(0);
+    const router = useRouter();
+
     useEffect(() =>{
         categoryData&&calculateTotalPercentage();
     }, [categoryData])
@@ -25,6 +29,33 @@ export default function CategoryInfo({ categoryData }) {
     setPercentTotal(perc);
    }
 
+   const onDeleteCategory=()=>{
+    Alert.alert('Are you sure','Do you really want to delete?',[
+        {
+            text:'Cancel',
+            style:'cancel'
+        },
+        {
+            text:'Yes',
+            style:'destructive',
+            onPress:async()=>{
+                const {error} = await supabase
+                .from('CategoryItems')
+                .delete()
+                .eq('category_id', categoryData.id);
+
+                await supabase
+                .from ('Category')
+                .delete()
+                .eq('id', categoryData.id)
+
+                ToastAndroid.show('Category Deleted!', ToastAndroid.SHORT);
+                router.replace('/(tabs)');
+            }
+        }
+    ])
+   }
+
     return (
         <View>
             <View style={styles.container}>
@@ -35,7 +66,9 @@ export default function CategoryInfo({ categoryData }) {
                     <Text style={styles.categoryName}>{categoryData?.name}</Text>
                     <Text style={styles.CategoryItemText}>{categoryData?.CategoryItems?.length} Item</Text>
                 </View>
+                <TouchableOpacity onPress={() => onDeleteCategory()}>
                 <Fontisto name="trash" size={24} color="red" />
+                </TouchableOpacity>
             </View>
             {/* PROGRESSS BAR */}
             <View style={styles.amountContainer}>
