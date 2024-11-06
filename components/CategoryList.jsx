@@ -16,6 +16,15 @@ export default function CategoryList({ categoryList }) {
     });
   };
 
+  const calculateTotalCost=( categoryItems )=>{
+        let totalCost = 0;
+        categoryItems.forEach(item =>{
+          totalCost = totalCost + item.cost;
+        })
+
+        return totalCost;
+  }
+
   return (
     <View style={styles.container}>
       <Text
@@ -34,7 +43,7 @@ export default function CategoryList({ categoryList }) {
                   <Text style={styles.categoryText}>{category.name}</Text>
                   <Text style={styles.itemCount}>{category?.CategoryItems?.length} items</Text>
                  </View>
-                 <Text style={styles.totalAmountText} >$5000</Text>
+                 <Text style={styles.totalAmountText} >$ { calculateTotalCost(category?.CategoryItems) }</Text>
                  </View>
             </TouchableOpacity>
         ))}
@@ -51,6 +60,7 @@ const styles = StyleSheet.create({
         fontSize:20,
         fontWeight:'bold',
         paddingBottom:10,
+        ffontFamily: "Outfit-Bold",
     },
     iconText:{
       fontSize:35,
