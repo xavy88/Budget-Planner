@@ -32,7 +32,9 @@ export default function CategoryDetails() {
       <Feather name="arrow-left-circle" size={44} color="black" />
       </TouchableOpacity>
      <CategoryInfo categoryData={categoryData} />
-     <CategoryItemList  categoryData={categoryData} />
+     <CategoryItemList  categoryData={categoryData}
+      setUpdateRecord={()=>getCategoryDetail()}
+     />
 
      <Link 
      href={{

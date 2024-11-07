@@ -1,21 +1,57 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity, ToastAndroid, Linking } from 'react-native'
 import colors from '../../utils/colors'
+import { useState } from 'react'
+import Ionicons from '@expo/vector-icons/Ionicons';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import { supabase } from '../../utils/SupabaseConfig';
 
-export default function CategoryItemList({categoryData}) {
+export default function CategoryItemList({categoryData, setUpdateRecord}) {
+
+  const [expandItem, setExpandItem] = useState();
+
+  const onDeleteItem = async (id) => {
+    const {error} = await supabase
+    .from('CategoryItems')
+    .delete()
+    .eq('id', id);
+
+    ToastAndroid.show('Item Deleted!', ToastAndroid.SHORT);
+
+    setUpdateRecord(true);
+  }
+
+   const openURL = (url) =>{
+    if (url) {
+      Linking.openURL(url);
+    }
+   }
+
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Item List</Text>
       <View style={{marginTop:15,}}>
         {categoryData?.CategoryItems?.length > 0 ? categoryData?.CategoryItems?.map((item, index)=>(
           <>
-          <View key={index} style={styles.itemContainer}>
+          <TouchableOpacity key={index} style={styles.itemContainer}
+            onPress={()=>setExpandItem(index)}
+          >
                 <Image source={{ uri: item.Image }} style={styles.image} />
                 <View style={{flex:1,marginLeft:10}} >
                   <Text style={styles.name}> {item.name} </Text>
-                  <Text style={styles.url}>{item.url}</Text>
+                  <Text style={styles.url} numberOfLines={2} >{item.url}</Text>
                 </View>
                 <Text style={styles.cost}>$ {item.cost}</Text>
-          </View>
+          </TouchableOpacity>
+          {expandItem==index&&
+            <View style={styles.actionItemContainer}>
+              <TouchableOpacity onPress={() => onDeleteItem( item.id )}>
+              <Ionicons name="trash-outline" size={34} color="red" />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={()=>openURL(item.url)}>
+              <FontAwesome6 name="link" size={34} color="blue" />
+              </TouchableOpacity>
+            </View>
+          }
           {index !== categoryData?.CategoryItems?.length - 1 && (
                 <View
                   style={styles.separator}
@@ -71,4 +107,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: colors.GRAY,
   },
+  actionItemContainer:{
+    display:'flex',
+    flexDirection:'row',
+    gap:10,
+    justifyContent:'flex-end'
+  }
 })
