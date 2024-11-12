@@ -75,7 +75,7 @@ export default function AddNewCategory() {
         <Entypo name="price-tag" size={24} color={colors.PRIMARY} />
         <TextInput placeholder='Category Name'
           onChangeText={(v) => setCategoryName(v)}
-          style={{ width: '100%', fontSize: 18, }} />
+          style={{ width: '100%', fontSize: 18, fontFamily:'Outfit'}} />
       </View>
 
       <View style={styles.inputView}>
@@ -83,7 +83,7 @@ export default function AddNewCategory() {
         <TextInput placeholder='Total Budget'
           onChangeText={(v) => setTotalBudget(v)}
           keyboardType='numeric'
-          style={{ width: '100%', fontSize: 18, }} />
+          style={{ width: '100%', fontSize: 18, fontFamily:'Outfit'}} />
       </View>
 
       <TouchableOpacity style={styles.button}
@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
     borderRadius: 99,
     paddingHorizontal: 28,
     color: colors.WHITE,
+    fontFamily:'Outfit-Bold'
   },
   inputView: {
     borderWidth: 1,
@@ -131,5 +132,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     color: colors.WHITE,
+    fontFamily:'Outfit-Bold'
   }
 })

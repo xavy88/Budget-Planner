@@ -72,8 +72,8 @@ export default function CategoryInfo({ categoryData }) {
             </View>
             {/* PROGRESSS BAR */}
             <View style={styles.amountContainer}>
-                <Text> ${totalCost} </Text>
-                <Text> Total Budget:{categoryData.assigned_budget} </Text>
+                <Text style={{fontFamily:'Outfit-Bold'}}> $ {totalCost} </Text>
+                <Text style={{fontFamily:'Outfit-Bold'}}> Total Budget: $ {categoryData.assigned_budget} </Text>
             </View>
             <View style={styles.progressBarMainContainer}>
                 <View style={[styles.progressBarSubContainer, { width: percentTotal + "%" }]}>
@@ -102,11 +102,13 @@ const styles = StyleSheet.create({
         alignItems: 'baseline',
     },
     categoryName: {
-        fontWeight: 'bold',
         fontSize: 24,
+        fontFamily:'Outfit-Bold',
+        color:colors.PRIMARY,
     },
     CategoryItemText: {
         fontSize: 16,
+        fontFamily:'Outfit',
     },
     amountContainer:{
         display:'flex',

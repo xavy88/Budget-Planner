@@ -85,7 +85,7 @@ export default function CircularChart({ categoryList }) {
                       size={24}
                       color={colors.COLOR_LIST[index]}
                     />
-                    <Text>{index < 4 ? category.name : "Other"}</Text>
+                    <Text style={{fontFamily: "Outfit-Bold"}}>{index < 4 ? category.name : "Other"}</Text>
                   </View>
                 )
             )}

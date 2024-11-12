@@ -58,9 +58,9 @@ const styles = StyleSheet.create({
     },
     textBudget:{
         fontSize:20,
-        fontWeight:'bold',
         paddingBottom:10,
-        ffontFamily: "Outfit-Bold",
+        fontFamily: "Outfit-Bold",
+        color:colors.PRIMARY,
     },
     iconText:{
       fontSize:35,
@@ -84,10 +84,12 @@ const styles = StyleSheet.create({
     },
     categoryText:{
       fontSize:20,
-      fontWeight:'bold'
+      fontFamily: "Outfit-Bold",
+      color:colors.PRIMARY,
     },
     itemCount:{
-
+      fontFamily: "Outfit",
+      
     },
     subContainer:{
       display:'flex',
@@ -97,7 +99,8 @@ const styles = StyleSheet.create({
       width:'70%'
     },
     totalAmountText:{
-      fontWeight:'bold',
-      fontSize:17
+      fontFamily: "Outfit-Bold",
+      fontSize:17,
+      color:colors.PRIMARY,
     }
 })

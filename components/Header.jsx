@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { client } from '../utils/KindeConfig';
 import colors from '../utils/colors';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useFonts } from 'expo-font';
 
 export default function Header() {
     const [user, setUser] = useState();
@@ -16,6 +17,13 @@ export default function Header() {
       const user = await client.getUserDetails();
       setUser(user);
     };
+
+    const [loaded, error] = useFonts({
+      'Outfit': require('./../assets/fonts/Outfit-Regular.ttf'),
+      'Outfit-Medium': require('./../assets/fonts/Outfit-Medium.ttf'),
+      'Outfit-Bold': require('./../assets/fonts/Outfit-Bold.ttf'),
+    });
+
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={{uri: user?.picture}} />
@@ -40,13 +48,13 @@ const styles = StyleSheet.create({
     textWel:{
         color:colors.WHITE,
         fontSize:18,
-        fontFamily:'Outfit',
+        fontFamily:'Outfit-Bold'
+        
     },
     textName:{
         color:colors.WHITE,
         fontSize:22,
-        fontWeight:'bold',
-        fontFamily:'Outfit',
+        fontFamily:'Outfit-Bold',
     },
     container:{
         display:'flex',

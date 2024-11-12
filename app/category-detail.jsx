@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Link, useLocalSearchParams, useRouter } from 'expo-router'
 import { supabase } from '../utils/SupabaseConfig';
@@ -27,33 +27,34 @@ export default function CategoryDetails() {
   }
 
   return (
-    <View style={{ padding: 20, marginTop: 20, flex:1, backgroundColor: colors.WHITE}}>
-      <TouchableOpacity onPress={() =>router.back()}>
-      <Feather name="arrow-left-circle" size={44} color="black" />
-      </TouchableOpacity>
-     <CategoryInfo categoryData={categoryData} />
-     <CategoryItemList  categoryData={categoryData}
-      setUpdateRecord={()=>getCategoryDetail()}
-     />
-
-     <Link 
-     href={{
-      pathname:'/add-new-category-item',
-      params:{
-        categoryId:categoryData.id
-      }
-     }}
-     style={styles.floatingBtn}>
-     <Entypo name="add-to-list" size={34} color={colors.PRIMARY} />
-     </Link>
+    <View style={{ padding: 20, marginTop: 20, flex: 1, backgroundColor: colors.WHITE }}>
+      <ScrollView showsVerticalScrollIndicator ={false}>
+        <TouchableOpacity onPress={() => router.replace('/(tabs)')}>
+          <Feather name="arrow-left-circle" size={44} color={colors.PRIMARY} />
+        </TouchableOpacity>
+        <CategoryInfo categoryData={categoryData} />
+        <CategoryItemList categoryData={categoryData}
+          setUpdateRecord={() => getCategoryDetail()}
+        />
+      </ScrollView>
+      <Link
+        href={{
+          pathname: '/add-new-category-item',
+          params: {
+            categoryId: categoryData.id
+          }
+        }}
+        style={styles.floatingBtn}>
+        <Entypo name="add-to-list" size={34} color={colors.PRIMARY} />
+      </Link>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  floatingBtn:{
-    position:'absolute',
-    bottom:16,
-    right:16,
+  floatingBtn: {
+    position: 'absolute',
+    bottom: 16,
+    right: 16,
   },
 })

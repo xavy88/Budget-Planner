@@ -32,7 +32,7 @@ export default function CategoryItemList({categoryData, setUpdateRecord}) {
       <View style={{marginTop:15,}}>
         {categoryData?.CategoryItems?.length > 0 ? categoryData?.CategoryItems?.map((item, index)=>(
           <>
-          <TouchableOpacity key={index} style={styles.itemContainer}
+          <TouchableOpacity style={styles.itemContainer}
             onPress={()=>setExpandItem(index)}
           >
                 <Image source={{ uri: item.Image }} style={styles.image} />
@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
     marginTop:20,
   },
   heading:{
-    fontWeight:'bold',
     fontSize:20,
+    fontFamily:'Outfit-Bold',
   },
   image:{
     width: 90,
@@ -88,14 +88,17 @@ const styles = StyleSheet.create({
   },
   name:{
     fontSize:20,
+    fontFamily:'Outfit-Bold',
+    color:colors.PRIMARY,
   },
   url:{
     color:colors.GRAY,
   },
   cost:{
     fontSize:16,
-    fontWeight:'bold',
+    fontFamily:'Outfit-Bold',
     marginLeft:10,
+    color:colors.PRIMARY,
   },
   separator:{
     borderWidth:0.5,

@@ -4,6 +4,7 @@ import { Tabs } from 'expo-router'
 import colors from '../../utils/colors'
 
 export default function TabLayout() {
+
   return (
    
       <Tabs
